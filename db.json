@@ -5,6 +5,17 @@
       "username": "aaaaa",
       "email": "aasdf@gmail.com",
       "password": "$2a$10$priudsOxlBsvUrXn6Ucqm.y3nvgtNum78yuoK.Os5EqwD0Ds8NGvS"
+    },
+    {
+      "username": "manelo",
+      "email": "manelo@manel.com",
+      "id": "6a01"
+    },
+    {
+      "id": "97f1",
+      "username": "test",
+      "email": "test@gmail.com",
+      "password": "$2a$10$TQfxQNWHEHdCr2/llY4pKOKvUT7vsx6KlVPg4Sjt0qFTnQJLEjURu"
     }
   ]
 }

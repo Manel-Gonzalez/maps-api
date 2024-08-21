@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import Navbar from "./components/navbar";
-const Home = () => {
+
+const Navbar = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -22,10 +22,12 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
-      <h1>Welcome to the Home Page {userData?.username}</h1>
+      <div className="flex flex-row gap-2 justify-end">
+        <a href="/profile">Profile</a>
+        <button onClick={logout}>Logout</button>
+      </div>
     </div>
   );
 };
 
-export default Home;
+export default Navbar;
