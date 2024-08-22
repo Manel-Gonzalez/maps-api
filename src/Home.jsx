@@ -5,7 +5,9 @@ const Home = () => {
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
-    if (userId) {
+    if (!userId) {
+      window.location.href = "/login";
+    } else {
       fetch(`http://localhost:3000/users/${userId}`)
         .then((response) => response.json())
         .then((data) => {
@@ -14,11 +16,6 @@ const Home = () => {
         .catch((error) => console.error("Error fetching user data:", error));
     }
   }, []);
-
-  function logout() {
-    localStorage.removeItem("userId");
-    window.location.href = "/login";
-  }
 
   return (
     <div>

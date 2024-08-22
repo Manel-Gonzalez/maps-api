@@ -1,7 +1,13 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
+import {useNavigate} from "react-router-dom";
+import ThemeToggle from "./themeToggle";
 
 const Navbar = () => {
   const [userData, setUserData] = useState(null);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -17,14 +23,76 @@ const Navbar = () => {
 
   function logout() {
     localStorage.removeItem("userId");
-    window.location.href = "/login";
+    navigate("/login");
   }
 
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleClickOutside = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setIsDropdownVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isDropdownVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownVisible]);
+
   return (
-    <div>
-      <div className="flex flex-row gap-2 justify-end">
-        <a href="/profile">Profile</a>
-        <button onClick={logout}>Logout</button>
+    <div className="flex flex-row gap-2 justify-between">
+      <div className=" flex flex-row gap-8">
+        <img
+          className="cursor-pointer w-16 h-16"
+          src="mono.png"
+          alt="home"
+          onClick={() => navigate("/")}
+        />
+      </div>
+      <div className="flex flex-row gap-8">
+        {userData?.profile_pic && (
+          <div className="relative" ref={dropdownRef}>
+            <img
+              src={userData.profile_pic}
+              alt="profile_pic"
+              className=" w-12 h-12 rounded-full cursor-pointer"
+              onClick={toggleDropdown}
+            />
+
+            {isDropdownVisible && (
+              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
+                <a
+                  href="/profile"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsDropdownVisible(false);
+                  }}
+                >
+                  Profile
+                </a>
+                <a
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    logout();
+                  }}
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                >
+                  Logout
+                </a>
+              </div>
+            )}
+          </div>
+        )}
+        <ThemeToggle />
       </div>
     </div>
   );

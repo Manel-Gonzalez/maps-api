@@ -1,6 +1,7 @@
 import {useState} from "react";
 import bcrypt from "bcryptjs";
 import {useNavigate} from "react-router-dom";
+import ThemeToggle from "./components/themeToggle";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -45,42 +46,50 @@ function Login() {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
-      <h1 className="mb-4 text-3xl">Login</h1>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 items-center"
-      >
-        <div className="flex flex-row justify-between items-center w-full max-w-md mb-4">
-          <label className="w-1/3 text-left pr-4">Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={(e) => handleChange(e)}
-            className="w-2/3 p-2 border rounded"
-          />
-        </div>
-
-        <div className="flex flex-row justify-between items-center w-full max-w-md mb-4">
-          <label className="w-1/3 text-left pr-4"> Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={(e) => handleChange(e)}
-            className="w-2/3 p-2 border rounded"
-          />
-        </div>
-        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-
-        <button
-          type="submit"
-          className="p-2 border border-slate-200 shadow-sm shadow-slate-200 hover:bg-slate-600  text-white rounded"
+    <div>
+      <ThemeToggle />
+      <div className="flex flex-col justify-center items-center min-h-screen">
+        <h1 className="mb-4 text-3xl">Login</h1>
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 items-center"
         >
-          Submit
-        </button>
-      </form>
+          <div className="flex flex-row justify-between items-center w-full max-w-md mb-4">
+            <label className="w-1/3 text-left pr-4">Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={(e) => handleChange(e)}
+              className="w-2/3 p-2 border rounded"
+            />
+          </div>
+
+          <div className="flex flex-row justify-between items-center w-full max-w-md mb-4">
+            <label className="w-1/3 text-left pr-4"> Password:</label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={(e) => handleChange(e)}
+              className="w-2/3 p-2 border rounded"
+            />
+          </div>
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          <div className="flex flex-row gap-4 w-full">
+            <button type="submit" className="w-full p-2 border rounded">
+              Submit
+            </button>
+            <a
+              type="submit"
+              href="/register"
+              className=" w-full p-2 border rounded"
+            >
+              To register
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

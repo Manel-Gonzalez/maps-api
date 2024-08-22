@@ -2,13 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  background-color: #242424;
-  color: white;
-}
-
-input {
-  background-color: #333;
-  color: white;
-}
-

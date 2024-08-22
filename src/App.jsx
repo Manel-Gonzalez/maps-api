@@ -5,6 +5,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Profile from "./profile";
 import Register from "./Register";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
