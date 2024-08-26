@@ -29,7 +29,7 @@ function Login() {
           localStorage.setItem("userId", user.id);
           navigate("/");
         } else {
-          console.log("password does not match");
+          alert("Password does not match");
         }
       } else {
         setErrorMessage("User not found");
@@ -48,13 +48,14 @@ function Login() {
   return (
     <div>
       <ThemeToggle />
-      <div className="flex flex-col justify-center items-center min-h-screen">
-        <h1 className="mb-4 text-3xl">Login</h1>
+      <div className="border-b my-8 mb-18" />
+      <div className="flex flex-col justify-center items-center w-fit m-auto p-4 ">
+        <h1 className="m-8 text-4xl">Login</h1>
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 items-center"
         >
-          <div className="flex flex-row justify-between items-center w-full max-w-md mb-4">
+          <div className="flex flex-row justify-between items-center w-full max-w-md mb-4 mt-4">
             <label className="w-1/3 text-left pr-4">Email:</label>
             <input
               type="email"
@@ -76,18 +77,18 @@ function Login() {
             />
           </div>
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-          <div className="flex flex-row gap-4 w-full">
-            <button type="submit" className="w-full p-2 border rounded">
-              Submit
-            </button>
-            <a
-              type="submit"
-              href="/register"
-              className=" w-full p-2 border rounded"
-            >
-              To register
-            </a>
-          </div>
+          <a
+            onClick={() => navigate("/register")}
+            className=" w-full p-2 hover:text-blue-500 cursor-pointer"
+          >
+            Don't have an account? Sign up
+          </a>
+          <button
+            type="submit"
+            className="w-full p-2 border rounded  hover:bg-slate-700 hover:text-white"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>

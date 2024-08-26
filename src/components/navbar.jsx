@@ -48,10 +48,10 @@ const Navbar = () => {
   }, [isDropdownVisible]);
 
   return (
-    <div className="flex flex-row gap-2 justify-between">
+    <div className="flex flex-row gap-2 justify-between py-4 border-b ">
       <div className=" flex flex-row gap-8">
         <img
-          className="cursor-pointer w-16 h-16"
+          className="cursor-pointer w-12 h-12"
           src="mono.png"
           alt="home"
           onClick={() => navigate("/")}

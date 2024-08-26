@@ -17,7 +17,7 @@ const ThemeToggle = () => {
   };
 
   return (
-    <>
+    <div className="">
       {theme === "light" ? (
         <img
           onClick={toggleTheme}
@@ -31,7 +31,7 @@ const ThemeToggle = () => {
           src="light.png"
         />
       )}
-    </>
+    </div>
   );
 };
 
