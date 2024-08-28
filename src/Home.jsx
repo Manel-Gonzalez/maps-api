@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import Navbar from "./components/navbar";
+import Map from "./components/map";
 const Home = () => {
   const [userData, setUserData] = useState(null);
 
@@ -20,7 +21,10 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <h1>Welcome to the Home Page {userData?.username}</h1>
+      <h1 className="p-8 text-xl">
+        Welcome to the MONKY MAP <b>{userData?.username}</b>
+      </h1>
+      <Map />
     </div>
   );
 };

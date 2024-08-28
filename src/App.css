@@ -3,4 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+}
+
+html {
+  height: 90%;
+  overflow: hidden; /* Prevent global scroll bar */
 }
