@@ -55,7 +55,7 @@ function Search({setSearchPosition, placeholder}) {
 }
 
 function Map() {
-  const [position, setPosition] = useState([51.505, -0.09]);
+  const [position, setPosition] = useState([0.0, 0.0]);
   const [hasPosition, setHasPosition] = useState(false);
   const [searchPosition, setSearchPosition] = useState(null);
 
