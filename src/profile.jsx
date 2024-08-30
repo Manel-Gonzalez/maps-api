@@ -44,7 +44,7 @@ function Profile() {
       });
     } else {
       setEditData({
-        ...registerData,
+        ...userData,
         [name]: value,
       });
     }
@@ -93,19 +93,39 @@ function Profile() {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col justify-center items-center min-h-screen">
-        <h1>Profile</h1>
-        <div>
+      <div className="flex flex-col justify-center items-center my-8">
+        <h1 className="text-3xl mb-8">Profile</h1>
+        <div className="">
+          <div>
+            {isEditing ? (
+              <input
+                type="file"
+                onChange={handleFileChange}
+                className="py-2 border rounded my-4"
+              />
+            ) : (
+              userData.profile_pic && (
+                <img
+                  src={userData.profile_pic}
+                  alt="Profile"
+                  className="w-32 h-32 rounded-full"
+                />
+              )
+            )}
+          </div>
           {isEditing ? (
             <input
               type="text"
               name="username"
               value={editData.username}
               onChange={handleChange}
-              className="p-2 border rounded"
+              className="p-2 border rounded my-4"
             />
           ) : (
-            <p>Username: {userData.username}</p>
+            <p className="text-lg my-2">
+              Username:{" "}
+              <span className="font-semibold">{userData.username}</span>
+            </p>
           )}
         </div>
         <div>
@@ -115,10 +135,12 @@ function Profile() {
               name="email"
               value={editData.email}
               onChange={handleChange}
-              className="p-2 border rounded"
+              className="p-2 border rounded my-4"
             />
           ) : (
-            <p>Email: {userData.email}</p>
+            <p className="text-lg my-2">
+              Email: <span className="font-semibold">{userData.email}</span>
+            </p>
           )}
         </div>
         <div>
@@ -126,43 +148,23 @@ function Profile() {
             <input
               type="text"
               name="password"
+              placeholder="********"
               onChange={handleChange}
-              className="p-2 border rounded"
+              className="p-2 border rounded my-4"
             />
           ) : (
-            <p>Password: ******</p>
-          )}
-        </div>
-        <div>
-          {isEditing ? (
-            <input
-              type="file"
-              onChange={handleFileChange}
-              className="p-2 border rounded"
-            />
-          ) : (
-            userData.profile_pic && (
-              <img
-                src={userData.profile_pic}
-                alt="Profile"
-                className="w-32 h-32 rounded-full"
-              />
-            )
+            <p className="text-lg my-2 mb-4">
+              Password: <span className="font-semibold">******</span>
+            </p>
           )}
         </div>
 
         {isEditing ? (
-          <button
-            onClick={handleSaveClick}
-            className="p-2 border border-slate-200 shadow-sm shadow-slate-200 hover:bg-slate-600 text-white rounded"
-          >
+          <button onClick={handleSaveClick} className="p-2 border rounded">
             Save
           </button>
         ) : (
-          <button
-            onClick={handleEditClick}
-            className="p-2 border border-slate-200 shadow-sm shadow-slate-200 hover:bg-slate-600 text-white rounded"
-          >
+          <button onClick={handleEditClick} className="p-2 px-4 border rounded">
             Edit
           </button>
         )}
